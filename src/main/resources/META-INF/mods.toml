@@ -1,0 +1,27 @@
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="All rights reserved"
+issueTrackerURL="https://github.com/jeremiahwinsley/novillagerdm" #optional
+
+[[mods]] #mandatory
+modId="novillagerdm" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="No Villager Death Messages" #mandatory
+authors="jeremiahwinsley" #optional
+description='''
+Removes the console spam from villager deaths.
+'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.novillagerdm]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[36,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.novillagerdm]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
