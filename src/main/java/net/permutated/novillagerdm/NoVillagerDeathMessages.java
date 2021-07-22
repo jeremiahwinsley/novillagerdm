@@ -1,11 +1,9 @@
 package net.permutated.novillagerdm;
 
-import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.network.FMLNetworkConstants;
 import net.permutated.novillagerdm.filters.VillagerDeathMessageFilter;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,10 +18,10 @@ public class NoVillagerDeathMessages {
     public NoVillagerDeathMessages() {
         LOGGER.info("Registering mod: {}", MODID);
 
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST,
-            () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
+            () -> new IExtensionPoint.DisplayTest(() -> "ANY", (remote, isServer) -> true));
 
-        Logger rootLogger = LogManager.getRootLogger();
+        var rootLogger = LogManager.getRootLogger();
         if (rootLogger instanceof org.apache.logging.log4j.core.Logger) {
             ((org.apache.logging.log4j.core.Logger) rootLogger).addFilter(new VillagerDeathMessageFilter());
         } else {
