@@ -3,7 +3,7 @@ package net.permutated.novillagerdm;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.network.FMLNetworkConstants;
+import net.minecraftforge.network.NetworkConstants;
 import net.permutated.novillagerdm.filters.VillagerDeathMessageFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,13 +20,13 @@ public class NoVillagerDeathMessages {
         LOGGER.info("Registering mod: {}", MODID);
 
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-            () -> new IExtensionPoint.DisplayTest(() -> FMLNetworkConstants.IGNORESERVERONLY, (remote, isServer) -> true));
+            () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (remote, isServer) -> true));
 
-        var rootLogger = LogManager.getRootLogger();
-        if (rootLogger instanceof org.apache.logging.log4j.core.Logger) {
-            ((org.apache.logging.log4j.core.Logger) rootLogger).addFilter(new VillagerDeathMessageFilter());
+        var logger = LogManager.getRootLogger();
+        if (logger instanceof org.apache.logging.log4j.core.Logger rootLogger) {
+            rootLogger.addFilter(new VillagerDeathMessageFilter());
         } else {
-            LOGGER.error("Registration failed with unexpected class: {}", rootLogger.getClass());
+            LOGGER.error("Registration failed with unexpected class: {}", logger.getClass());
         }
     }
 }
