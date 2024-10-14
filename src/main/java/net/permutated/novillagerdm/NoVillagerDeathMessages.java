@@ -1,9 +1,6 @@
 package net.permutated.novillagerdm;
 
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.network.NetworkConstants;
+import net.neoforged.fml.common.Mod;
 import net.permutated.novillagerdm.filters.VillagerDeathMessageFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,9 +15,6 @@ public class NoVillagerDeathMessages {
     @SuppressWarnings("java:S1118")
     public NoVillagerDeathMessages() {
         LOGGER.info("Registering mod: {}", MODID);
-
-        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
-            () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (remote, isServer) -> true));
 
         var logger = LogManager.getRootLogger();
         if (logger instanceof org.apache.logging.log4j.core.Logger rootLogger) {

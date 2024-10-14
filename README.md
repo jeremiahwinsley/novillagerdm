@@ -1,5 +1,5 @@
 # No Villager Death Messages
-No Villager Death Messages for Forge 1.17.1 - disables console spam from villager deaths
+No Villager Death Messages for Forge 1.17.1+ - disables console spam from villager deaths
 
 See also [MC-165985](https://bugs.mojang.com/browse/MC-165985).
 
